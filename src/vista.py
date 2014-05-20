@@ -1,6 +1,6 @@
 __author__ = 'gaudiouney'
 
-def tabuleio(tela, html):
+def tabuleiro(tela, html):
     tabul = html.DIV()
     tela <= tabul
 
