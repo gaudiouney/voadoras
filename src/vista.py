@@ -34,7 +34,7 @@ class Carta:
 class Deque:
     def __init__(self, html, tela):
         self.tela = tela
-        self.deque = [Carta(html, (x*4, 10), self) for x in range(10)]
+        self.deque = [Carta(html, (x*4, 100), self) for x in range(10)]
 
     def voa(self, ev=0):
         [carta.voar((100, 100)) for carta in self.deque]
@@ -48,8 +48,5 @@ def main(html, doc):
      cartas = html.DIV()
      tela <= splash
      tela <= cartas
-     #tabuleiro(tela, html)
-     #embaralha(tela, html)
-     #voa(tela, html)
      deque = Deque(html, splash)
      botao = Botao(html, deque, cartas)
