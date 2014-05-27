@@ -1,6 +1,15 @@
 __author__ = 'gaudiouney'
 FACE = 'http://misslittlecherry.files.wordpress.com/2009/12/1213276673857798001xo0.jpg'
 CH = CV = 50
+FACEBOTAO = 'http://cdns2.freepik.com/fotos-gratis/clip-art-botao-vermelho_429468.jpg'
+HH = HV = 30
+class Botao:
+    def __init__(self, html, deque, tela):
+        bt = self.e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
+        bt.onclick = deque.voa
+        bt.style.position = "relative"
+        tela <= bt
+
 class Carta:
     def __init__(self, html, xy, deque):
         x, y = self.pos = xy
@@ -9,9 +18,9 @@ class Carta:
         ct.style.position = "absolute"
         ct.style.left, ct.style.top = xy
         x = x / 5
-        ct.style.transition = "left 2s linear %fs, top 2s linear %fs" % (x, x)
+        ct.style.transition = "left 1s linear %fs, top 1s linear %fs" % (x, x)
         deque <= ct
-        ct.onclick = self.voa
+        #ct.onclick = self.voa
     def voa(self, evento):
         self.deque.voa()
 
@@ -27,28 +36,20 @@ class Deque:
         self.tela = tela
         self.deque = [Carta(html, (x*4, 10), self) for x in range(10)]
 
-    def voa(self):
+    def voa(self, ev=0):
         [carta.voar((100, 100)) for carta in self.deque]
     def __le__(self, other):
         self.tela <= other
-def tabuleiro(tela, html):
 
-    tabul = html.DIV()
-    tela <= tabul
-
-def embaralha(tela, html):
-    pass
-
-def voa(tela, html):
-    pass
-
- def main(html, doc):
+def main(html, doc):
      tela = doc["main"]
      #html = gui.html
-     splash = html.DIV("VOADORAS")
+     splash = html.DIV()
+     cartas = html.DIV()
      tela <= splash
-     tela <= splash
+     tela <= cartas
      #tabuleiro(tela, html)
      #embaralha(tela, html)
      #voa(tela, html)
-     deque = Deque(html, tela)
+     deque = Deque(html, splash)
+     botao = Botao(html, deque, cartas)
