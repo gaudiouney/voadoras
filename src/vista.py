@@ -43,7 +43,6 @@ class Deque:
 
 def main(html, doc):
      tela = doc["main"]
-     #html = gui.html
      splash = html.DIV()
      cartas = html.DIV()
      tela <= splash
