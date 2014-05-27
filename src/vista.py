@@ -8,6 +8,7 @@ class Botao:
         bt = self.e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
         bt.onclick = deque.voa
         bt.style.position = "relative"
+        bt.style.marginLeft = '10px'
         tela <= bt
 
 class Carta:
@@ -20,7 +21,6 @@ class Carta:
         x = x / 5
         ct.style.transition = "left 1s linear %fs, top 1s linear %fs" % (x, x)
         deque <= ct
-        #ct.onclick = self.voa
     def voa(self, evento):
         self.deque.voa()
 
