@@ -12,14 +12,6 @@ CH = CV = 200
 #        bt.style.marginLeft = '10px'
 #        tela <= bt
 class Carta:
-    def mouse_over(self, ev):
-        print('mouse over ! ')
-        ev.target.style.cursor = "pointer"
-        self.m0 = [None,None]
-    def drag_start(self, ev):
-        self.m0 = [ev.x-ev.target.left,ev.y-ev.target.top]
-        ev.data['text']=ev.target.id
-        ev.data.effectAllowed = 'move'
     def __init__(self, html, xy, ev, mouse_over, drag_start, source):#, deque):
         x, y = self.pos = xy
         self.m0 = [None,None]
@@ -28,6 +20,16 @@ class Carta:
         ct.style.position = "absolute"
         ct.style.left, ct.style.top = xy
         x = x / 5
+        source.bind('mouseover',mouse_over)
+        source.bind('dragstart',drag_start)
+    def mouse_over(self, ev):
+        print('mouse over ! ')
+        ev.target.style.cursor = "pointer"
+        self.m0 = [None,None]
+    def drag_start(self, ev):
+        self.m0 = [ev.x-ev.target.left,ev.y-ev.target.top]
+        ev.data['text']=ev.target.id
+        ev.data.effectAllowed = 'move'
         source.bind('mouseover',mouse_over)
         source.bind('dragstart',drag_start)
         #ct.style.transition = "left 0.4s linear %fs, top 0.4s linear %fs" % (x, x)
