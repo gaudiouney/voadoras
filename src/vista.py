@@ -12,28 +12,27 @@ CH = CV = 200
 #        bt.style.marginLeft = '10px'
 #        tela <= bt
 class Carta:
-    def __init__(self, html, xy, ev, mouse_over, drag_start, source):#, deque):
+    def __init__(self, html, xy, ev, mouse_over, drag_start, source, cartas):#, deque):
         x, y = self.pos = xy
         self.m0 = [None,None]
-        #self.deque = deque
+        self.cartas = cartas
         ct = self.e_carta = html.IMG(src=FACE, width=CH, heigth=CV)
         ct.style.position = "absolute"
         ct.style.left, ct.style.top = xy
         x = x / 5
+        cartas <= ct
         source.bind('mouseover',mouse_over)
         source.bind('dragstart',drag_start)
     def mouse_over(self, ev):
         print('mouse over ! ')
         ev.target.style.cursor = "pointer"
         self.m0 = [None,None]
-    def drag_start(self, ev):
+    def drag_start(self, ev, ct, x):
         self.m0 = [ev.x-ev.target.left,ev.y-ev.target.top]
         ev.data['text']=ev.target.id
         ev.data.effectAllowed = 'move'
-        source.bind('mouseover',mouse_over)
-        source.bind('dragstart',drag_start)
         #ct.style.transition = "left 0.4s linear %fs, top 0.4s linear %fs" % (x, x)
-    #    deque <= ct
+        #cartas <= ct
     #def voa(self, evento):
     #    self.deque.voa()
     #    self.botao.voa()
@@ -74,7 +73,7 @@ def main(html, doc):
     tela <= splash
     tela <= cartas
 #     deque = Deque(html, splash)
-#     botao = Botao(html, deque, cartas)
+    cartas = Carta(html, cartas)
     panel = tela
     tela <= panel
     dest = tela
