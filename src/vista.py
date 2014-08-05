@@ -12,17 +12,19 @@ CH = CV = 200
 #        bt.style.marginLeft = '10px'
 #        tela <= bt
 class Carta:
-    def __init__(self, html, xy, ev, mouse_over, drag_start, source, cartas):#, deque):
+    def __init__(self, html, cartas, xy):#, deque):
         x, y = self.pos = xy
         self.m0 = [None,None]
         self.cartas = cartas
         ct = self.e_carta = html.IMG(src=FACE, width=CH, heigth=CV)
         ct.style.position = "absolute"
-        ct.style.left, ct.style.top = xy
+        ct.style.left = x
+        ct.style.top = y
         x = x / 5
+        self.tela <= cartas
         cartas <= ct
-        source.bind('mouseover',mouse_over)
-        source.bind('dragstart',drag_start)
+        self.source.bind('mouseover',self.mouse_over)
+        self.source.bind('dragstart',self.drag_start)
     def mouse_over(self, ev):
         print('mouse over ! ')
         ev.target.style.cursor = "pointer"
@@ -31,6 +33,20 @@ class Carta:
         self.m0 = [ev.x-ev.target.left,ev.y-ev.target.top]
         ev.data['text']=ev.target.id
         ev.data.effectAllowed = 'move'
+    def drag_over(ev):
+        ev.data.dropEffect = 'move'
+        ev.preventDefault()
+    def drop(self, ev):
+        src_id = ev.data['text']
+        elt = [src_id]
+        elt.style.left = "%spx" %(ev.x) #-m0[0])
+        elt.style.top = "%spx" %(ev.y) #-m0[1])
+        elt.draggable = False
+        elt.unbind('mouseover')
+        elt.style.cursor = "auto"
+        ev.preventDefault()
+        self.tela.bind('dragover',self.drag_over)
+        self.tela.bind('drop',self.drop)
         #ct.style.transition = "left 0.4s linear %fs, top 0.4s linear %fs" % (x, x)
         #cartas <= ct
     #def voa(self, evento):
@@ -55,21 +71,10 @@ class Carta:
 
 def main(html, doc):
     tela = doc["main"]
-    def drag_over(ev):
-        ev.data.dropEffect = 'move'
-        ev.preventDefault()
-    def drop(ev):
-        src_id = ev.data['text']
-        elt = [src_id]
-        elt.style.left = "%spx" %(ev.x) #-m0[0])
-        elt.style.top = "%spx" %(ev.y) #-m0[1])
-        elt.draggable = False
-        elt.unbind('mouseover')
-        elt.style.cursor = "auto"
-        ev.preventDefault()
 
     splash = html.DIV()
     cartas = html.DIV()
+    #teladrop = html.DIV()
     tela <= splash
     tela <= cartas
 #     deque = Deque(html, splash)
@@ -78,8 +83,8 @@ def main(html, doc):
     tela <= panel
     dest = tela
     tela <= dest
-    source = doc['Carta']#doc["Botao"]
+    source = doc["Carta"]#doc["Botao"]
     source <= cartas #botao
     source.draggable = True
-    tela.bind('dragover',drag_over)
-    tela.bind('drop',drop)
+    #tela.bind('dragover',drag_over)
+    #tela.bind('drop',drop)
