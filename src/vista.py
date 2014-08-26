@@ -1,90 +1,87 @@
 __author__ = 'gaudiouney'
-FACE = 'http://misslittlecherry.files.wordpress.com/2009/12/1213276673857798001xo0.jpg'
+TABULEIRO = 'http://mosaicosmarinella.com.br/product_images/r/003/azulejo_colorido_amarelo__68802_zoom.jpg?wmode=opaque'
+TAL = TAC = 500
+FACE = 'http://wallpaper.ultradownloads.com.br/114690_Papel-de-Parede-Paisagem-de-primavera_1600x1200.jpg' #, 'http://www.baixaki.com.br/imagens/wpapers/BXK15424_paisagem_tropical800.jpg','http://www.sopapeldeparede.com.br/wp-content/uploads/2009/09/paisagem_001.jpg']
+#CARTAS = FACE*3*3
 CH = CV = 200
-#FACEBOTAO = 'http://cdns2.freepik.com/fotos-gratis/clip-art-botao-vermelho_429468.jpg'
-#HH = HV = 60
+FACEBOTAO = 'http://cdns2.freepik.com/fotos-gratis/clip-art-botao-vermelho_429468.jpg?wmode=opaque'
+HH = HV = 30
+TELAFUNDO = 'http://www.flaviense.com.br/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/f/o/formica-lousa-l-113-verde-oficial.gif'
+TC = TL = 1415
 
-#class Botao:
-#    def __init__(self, html, deque, tela):
-#        bt = self.e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
-#        bt.onclick = deque.voa
-#        bt.style.position = "absolute"
-#        bt.style.marginLeft = '10px'
-#        tela <= bt
+class Botao:
+    def __init__(self, html, deque, e_tela, e_botao):
+        self.e_tela = e_tela
+        bt = self.e_botao = e_botao
+        bt.onclick = deque.voa
+        bt.style.position = "absolute"
+        bt.style.left = '10px'
+        e_tela <= bt
+        e_botao<=bt
+
 class Carta:
-    def __init__(self, html, cartas, xy):#, deque):
+    def __init__(self, html, xy, deque):
         x, y = self.pos = xy
-        self.m0 = [None,None]
-        self.cartas = cartas
-        ct = self.e_carta = html.IMG(src=FACE, width=CH, heigth=CV)
+        self.deque = deque
+        ct = self.e_carta
         ct.style.position = "absolute"
-        ct.style.left = x
-        ct.style.top = y
-        x = x / 5
-        self.tela <= cartas
-        cartas <= ct
-        self.source.bind('mouseover',self.mouse_over)
-        self.source.bind('dragstart',self.drag_start)
-    def mouse_over(self, ev):
-        print('mouse over ! ')
-        ev.target.style.cursor = "pointer"
-        self.m0 = [None,None]
-    def drag_start(self, ev, ct, x):
-        self.m0 = [ev.x-ev.target.left,ev.y-ev.target.top]
-        ev.data['text']=ev.target.id
-        ev.data.effectAllowed = 'move'
-    def drag_over(ev):
-        ev.data.dropEffect = 'move'
-        ev.preventDefault()
-    def drop(self, ev):
-        src_id = ev.data['text']
-        elt = [src_id]
-        elt.style.left = "%spx" %(ev.x) #-m0[0])
-        elt.style.top = "%spx" %(ev.y) #-m0[1])
-        elt.draggable = False
-        elt.unbind('mouseover')
-        elt.style.cursor = "auto"
-        ev.preventDefault()
-        self.tela.bind('dragover',self.drag_over)
-        self.tela.bind('drop',self.drop)
-        #ct.style.transition = "left 0.4s linear %fs, top 0.4s linear %fs" % (x, x)
-        #cartas <= ct
-    #def voa(self, evento):
-    #    self.deque.voa()
-    #    self.botao.voa()
+        ct.style.left, ct.style.top = xy
+        x = x/10
+        ct.style.transition = "left 1s linear %fs, top 1s linear %fs" % (x, x)
+        deque <= ct
 
-    #def voar(self, delta):
-        #dx, dy = delta
-        #x, y = self.pos
-        #xy = self.pos = x + dx, y + dy
-        #ct = self.e_carta
-        #ct.style.left, ct.style.top
-#class Deque:
-#    def __init__(self, html, tela):
-#        self.tela = tela
-#        self.deque = [Carta(html, (x*4, 200), self) for x in range(10)]
-#
-#    def voa(self, ev=0):
-#        [carta.voar((200, 200)) for carta in self.deque]
-#    def __le__(self, other):
-#        self.tela <= other
+    def voa(self, evento):
+        self.deque.voa()
+
+    def voar(self, delta):
+        dx, dy = delta
+        x, y = self.pos
+        xy = self.pos = x + dx, y + dy
+        ct = self.e_carta
+        ct.style.left, ct.style.top = xy
+
+class Deque:
+    def __init__(self, html, tela):
+        self.tela = tela
+        self.deque = [Carta(html, (x*4, 100), self) for x in range(10)]
+
+    def voa(self, ev=0):
+        [carta.voar((200, 200)) for carta in self.deque]
+
+    def __le__(self, other):
+        self.tela <= other
+
+class Tabuleiroamarelo:
+    def __init__(self, html, e_tela):
+        self.e_tela = e_tela
+        tb = self.e_tabuleiroamarelo
+        tb.style.position = "absolute"
+        tb.style.marginLeft = '150px'
+        e_tela<= tb
 
 def main(html, doc):
+    e_botao = html.DIV()
+    e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
+    e_botao.style.position = "absolute"
+    e_botao.style.marginLeft = '0px'
     tela = doc["main"]
-
-    splash = html.DIV()
     cartas = html.DIV()
-    #teladrop = html.DIV()
-    tela <= splash
+    cartas = html.IMG(src= FACE , width=CH, heigth=CV)
+    cartas.style.position = "absolute"
+    cartas.style.marginLeft = '440px'
+    e_tela = html.IMG(src=TELAFUNDO, width=TC, heigth=TL)
+    e_tela.style.position = "absolute"
+    e_tela.style.marginLeft = '0px'
+    tela <= e_tela
+    e_tabuleiroamarelo = html.DIV()
+    e_tabuleiroamarelo = html.IMG(src=TABULEIRO, width=TAC, heigth=TAL)
+    e_tabuleiroamarelo.style.position = "absolute"
+    e_tabuleiroamarelo.style.marginLeft = '420px'
+    splash = html.DIV()
+    tela<= e_tabuleiroamarelo
     tela <= cartas
-#     deque = Deque(html, splash)
-    cartas = Carta(html, cartas)
-    panel = tela
-    tela <= panel
-    dest = tela
-    tela <= dest
-    source = doc["Carta"]#doc["Botao"]
-    source <= cartas #botao
-    source.draggable = True
-    #tela.bind('dragover',drag_over)
-    #tela.bind('drop',drop)
+    tela<= e_botao
+    tela <= splash
+    e_tabuleiroamarelo = Tabuleiroamarelo(html,e_tabuleiroamarelo)
+    deque = Deque(html, splash)
+    e_botao = Botao(html, deque, cartas)
