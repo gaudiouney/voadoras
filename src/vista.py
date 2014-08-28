@@ -4,8 +4,8 @@ TAL = TAC = 500
 FACE = 'http://wallpaper.ultradownloads.com.br/114690_Papel-de-Parede-Paisagem-de-primavera_1600x1200.jpg' #, 'http://www.baixaki.com.br/imagens/wpapers/BXK15424_paisagem_tropical800.jpg','http://www.sopapeldeparede.com.br/wp-content/uploads/2009/09/paisagem_001.jpg']
 #CARTAS = FACE*3*3
 CH = CV = 200
-FACEBOTAO = 'http://cdns2.freepik.com/fotos-gratis/clip-art-botao-vermelho_429468.jpg?wmode=opaque'
-HH = HV = 30
+FACEBOTAO = 'http://img.vivaolinux.com.br/imagens/dicas/comunidade/pms-ms.png'
+HH = HV = 50
 TELAFUNDO = 'http://www.flaviense.com.br/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/f/o/formica-lousa-l-113-verde-oficial.gif'
 TC = TL = 1415
 
