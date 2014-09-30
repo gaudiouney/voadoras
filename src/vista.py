@@ -1,7 +1,6 @@
 __author__ = 'gaudiouney'
 TAL = TAC = 500
-FACE = 'http://wallpaper.ultradownloads.com.br/114690_Papel-de-Parede-Paisagem-de-primavera_1600x1200.jpg' #, 'http://www.baixaki.com.br/imagens/wpapers/BXK15424_paisagem_tropical800.jpg','http://www.sopapeldeparede.com.br/wp-content/uploads/2009/09/paisagem_001.jpg']
-#CARTAS = FACE*3*3
+FACE = 'http://www.skatecuriosidade.com/wp-content/uploads/2013/03/king.jpg'
 CH = CV = 200
 FACEBOTAO = 'http://img.vivaolinux.com.br/imagens/dicas/comunidade/pms-ms.png'
 HH = HV = 50
@@ -38,7 +37,7 @@ class Deque:
         self.tela = tela
         self.deque = [Carta(html, (x*4, 100), self) for x in range(10)]
     def voa(self, ev=0):
-        [carta.voar((200, 200)) for carta in self.deque]
+        [carta.voar((800, 200)) for carta in self.deque]
     def __le__(self, other):
         self.tela <= other
 
