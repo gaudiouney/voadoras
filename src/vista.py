@@ -15,13 +15,13 @@ class Botao:
         bt.style.marginLeft = '10px'
         tela <= bt
 
-class Retorno:
-    def __init__(self, html, deque, tela):
-        bt = self.e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
-        bt.onclick = deque.voltar
-        bt.style.position = "relative"
-        bt.style.marginLeft = '30px'
-        tela <= bt
+#class Retorno:
+#    def __init__(self, html, deque, tela):
+#        bt = self.e_botao = html.IMG(src=FACEBOTAO, width=HH, heigth=HV)
+#        bt.onclick = deque.voltar
+#        bt.style.position = "relative"
+#        bt.style.marginLeft = '30px'
+#        tela <= bt
 
 class Carta:
     def __init__(self, html, xy, deque):
@@ -68,4 +68,4 @@ def main(html, doc):
     tela2 <= html.IMG(src=TELAA2, width=HC, heigth=HV);
     deque = Deque(html, splash)
     botao = Botao(html, deque, cartas)
-    retorno = Retorno(html, deque, cartas)
+    #retorno = Retorno(html, deque, cartas)
